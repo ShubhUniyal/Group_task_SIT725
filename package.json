@@ -1,5 +1,5 @@
 {
-  "name": "login-dashboard-app",
+  "name": "fire-detection",
   "version": "1.0.0",
   "description": "A combined application with login and dashboard functionality",
   "main": "app.js",

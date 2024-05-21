@@ -67,7 +67,7 @@ window.onload = function() {
 
     function sendEmailNotification() {
         // Dummy function to simulate sending an email
-        emailNotificationMessage.textContent = 'Email notification sent!';
+        emailNotificationMessage.textContent = 'More chances of fire. Email notification sent!';
     }
 
     // Set initial gauge value
