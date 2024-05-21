@@ -1,17 +1,20 @@
 {
-  "name": "firedetection",
+  "name": "login-dashboard-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "A combined application with login and dashboard functionality",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.7.4",
     "nodemailer": "^6.9.13"
   }
 }

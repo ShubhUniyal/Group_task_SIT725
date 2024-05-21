@@ -65,6 +65,10 @@ window.onload = function() {
         }
     }
 
+    function sendEmailNotification() {
+        // Dummy function to simulate sending an email
+        emailNotificationMessage.textContent = 'Email notification sent!';
+    }
 
     // Set initial gauge value
     updateGauge(currentValue);
