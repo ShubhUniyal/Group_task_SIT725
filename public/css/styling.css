@@ -1,0 +1,118 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(104, 139, 166, 0.7), rgba(0, 0, 0, 0.7)), url('bluey\(1\).jpg');
+    background-position: center;
+    background-size: cover;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+}
+
+.navbar {
+    height: 12%;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 50px;
+    cursor: pointer;
+}
+
+.menu-icon {
+    width: 30px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 60px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+}
+
+.row {
+    display: flex;
+    height: 88%;
+    align-items: center;
+}
+
+
+h1 {
+    color: #fff;
+    font-size: 70px;
+}
+
+p {
+    color: #fff;
+    font-size: 11px;
+    line-height: 15px;
+    margin-bottom: 20px; /* Added margin-bottom for paragraphs */
+}
+
+button {
+    width: 180px;
+    color: #000;
+    font-size: 12px;
+    padding: 12px 0;
+    background: #fff;
+    border-radius: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    width: 230px;
+    height: 240px; 
+    display: inline-block;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 15px;
+    background-image: url('darkblue.jpg');
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+h5 {
+    color: #fff;
+    text-shadow: 0 0 5px #999;
+}
+
+.card p {
+    text-shadow: 0 0 15px #000;
+    font-size: 12px;
+}
+
+.col:first-child p {
+    margin-left: 0; /* Remove default margin */
+    padding-left: 0; /* Remove default padding */
+}
+
+.col {
+    flex-basis: 60%;
+    padding-left: 20px;
+}
