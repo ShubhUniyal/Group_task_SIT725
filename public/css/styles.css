@@ -33,7 +33,9 @@ header {
 
 .logo img {
   height: 50px;
+  width: auto;
 }
+
 
 .nav-items {
   list-style: none;
@@ -154,7 +156,6 @@ body.login-page {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('bluey\(1\).jpg') no-repeat center center;
   background-size: cover;
 }
 
@@ -178,7 +179,7 @@ body.login-page {
 .wrapper h1 {
   font-size: 36px;
   text-align: center;
-  color: #5251ff;
+  color: #020268;
 }
 
 .wrapper .input-box {
@@ -230,7 +231,7 @@ body.login-page {
 .wrapper .btn {
   width: 100%;
   height: 45px;
-  background: #5251ff;
+  background: #020268;
   border: none;
   outline: none;
   border-radius: 40px;

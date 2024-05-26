@@ -5,24 +5,24 @@
 }
 
 .container {
-    width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(rgba(104, 139, 166, 0.7), rgba(0, 0, 0, 0.7)), url('bluey\(1\).jpg');
+    width: auto;
+    min-height: 100vh;
     background-position: center;
     background-size: cover;
     padding-left: 8%;
     padding-right: 8%;
-    box-sizing: border-box;
+    padding-bottom: 200px;
 }
 
 .navbar {
     height: 12%;
     display: flex;
     align-items: center;
+    position: relative; 
 }
 
 .logo {
-    width: 50px;
+    width: 100px;
     cursor: pointer;
 }
 
@@ -35,6 +35,7 @@
 nav {
     flex: 1;
     text-align: right;
+    color: #fff;
 }
 
 nav ul li {
@@ -46,73 +47,186 @@ nav ul li {
 nav ul li a {
     text-decoration: none;
     color: #fff;
-    font-size: 13px;
+    font-size: 15px;
+    border-bottom: none;
 }
 
 .row {
     display: flex;
-    height: 88%;
     align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
 }
-
 
 h1 {
     color: #fff;
-    font-size: 70px;
+    font-size: 55px;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 p {
     color: #fff;
-    font-size: 11px;
-    line-height: 15px;
-    margin-bottom: 20px; /* Added margin-bottom for paragraphs */
-}
-
-button {
-    width: 180px;
-    color: #000;
-    font-size: 12px;
-    padding: 12px 0;
-    background: #fff;
-    border-radius: 20px;
-    margin-top: 30px;
+    font-size: 18px;
+    text-align: center;
 }
 
 .card {
-    width: 230px;
-    height: 240px; 
-    display: inline-block;
+    width: calc(25% - 20px);
+    min-height: 240px;
     border-radius: 10px;
     padding: 15px 25px;
     box-sizing: border-box;
     cursor: pointer;
-    margin: 10px 15px;
-    background-image: url('darkblue.jpg');
-    background-position: center;
-    background-size: cover;
-    transition: transform 0.5s;
-}
-
-.card:hover {
-    transform: translateY(-8px);
-}
-
-h5 {
-    color: #fff;
-    text-shadow: 0 0 5px #999;
+    margin: 10px 0;
+    background-color: transparent;
+    border: 2px solid transparent;
+    box-shadow: none;
+    transition: transform 0.3s ease-in-out;
 }
 
 .card p {
-    text-shadow: 0 0 15px #000;
-    font-size: 12px;
+    font-size: 15px;
 }
 
-.col:first-child p {
-    margin-left: 0; /* Remove default margin */
-    padding-left: 0; /* Remove default padding */
+.card h5 {
+    font-size: 18px;
+}
+
+.card:hover {
+    transform: scale(1.05);
 }
 
 .col {
-    flex-basis: 60%;
-    padding-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.about-content p {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: left;
+    padding: 30px;
+    margin-bottom: 10px;
+}
+
+.about-content h2 {
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.about-container {
+    display: flex;
+    background-color: rgba(1, 1, 40, 0.3);
+    padding: 20px;
+    width: 90%;
+    margin: 10px auto;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.about-content {
+    flex: 1;
+    color: #fff;
+    padding-right: 20px;
+}
+
+.team-photo {
+    max-width: 50%;
+    border-radius: 10px;
+}
+
+#features {
+    text-align: center;
+    color: #fff;
+    margin-top: 50px;
+    background: none;
+    padding: 50px 0;
+}
+
+h2 {
+    margin-bottom: 10px;
+    color: #fff;
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.fun {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.fun-card {
+    width: calc(50% - 20px);
+    min-height: 200px;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 10px 0;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 2px solid #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+}
+
+.fun-card:hover {
+    transform: scale(1.05);
+}
+
+.fun-card p {
+    color: #fff;
+    text-align: center;
+    font-size: 15px;
+}
+
+.fun-card h5 {
+    font-size: 20px;
+    color: #fff;
+}
+.emergency-dropdown {
+    position: absolute;
+    top: calc(62%); 
+    left: calc(100% - 200px); 
+    transform: translateX(-50%); 
+    background-color: rgba(104, 139, 166, 0.9); 
+    padding: 20px; 
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); 
+    min-width: 200px; 
+}
+
+.emergency-dropdown p {
+    font-size: 12px; 
+    color: #fff; 
+}
+
+
+footer {
+    background-color: rgba(1, 1, 40, 0.9);
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    width: auto;
+    bottom: 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-content p {
+    margin: 0;
+    font-size: 15px;
 }
