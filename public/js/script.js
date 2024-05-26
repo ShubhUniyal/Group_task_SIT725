@@ -1,13 +1,3 @@
-const notificationIcon = document.getElementById('notificationIcon');
-const sidebar = document.querySelector('.notification-sidebar');
-const notificationList = document.querySelector('.notification-list');
-const overlay = document.getElementById('overlay');
-const notificationCross = document.querySelector('.notification-cross');
-let lastScrollTop = 0;
-const navbar = document.querySelector('.nav-bar');
-const notificationBubble = document.querySelector('.notification-bubble');
-let newNotificationCount = 0;
-
 window.onload = function() {
     const canvas = document.getElementById('gaugeCanvas');
     const ctx = canvas.getContext('2d');
@@ -16,18 +6,11 @@ window.onload = function() {
     const closePopup = document.getElementById('closePopup');
     const warningMessage = document.getElementById('warningMessage');
     const emailNotificationMessage = document.getElementById('emailNotificationMessage');
-    const showGaugeStatusButton = document.getElementById('showGaugeStatus');
-    const gaugeStatus = document.getElementById('gauge-container');
     let currentValue = 50;
     let emailSent = false; // Flag to track if email has been sent
-    let popupShown = false; // Flag to track if popup has been shown
 
     closePopup.addEventListener('click', () => {
         popup.style.display = 'none';
-    });
-
-    showGaugeStatusButton.addEventListener('click', () => {
-        gaugeStatus.style.display = gaugeStatus.style.display === 'block' ? 'none' : 'block';
     });
 
     function drawGauge(value) {
@@ -64,14 +47,11 @@ window.onload = function() {
     function updateGauge(value) {
         gaugeValue.textContent = `${value}%`;
         drawGauge(value);
-    
+
         if (value > 50 && value <= 70) {
-            if (!popupShown) {
-                popup.style.display = 'block';
-                appendNotification('Fire might be detected');
-                emailNotificationMessage.textContent = ''; // Clear any previous email notification message
-                popupShown = true; // Set the flag to true to prevent further popups
-            }
+            popup.style.display = 'block';
+            warningMessage.textContent = 'Fire might be detected';
+            emailNotificationMessage.textContent = ''; // Clear any previous email notification message
         } else if (value > 70) {
             if (!emailSent) {
                 sendEmailNotification();
@@ -79,87 +59,99 @@ window.onload = function() {
             }
         } else {
             popup.style.display = 'none';
-            notificationList.innerHTML = ''; // Clear all notification messages
+            warningMessage.textContent = '';
             emailNotificationMessage.textContent = ''; // Clear any previous email notification message
             emailSent = false; // Reset the flag if value goes below 70
-            popupShown = false; // Reset the popup flag if value goes below 50
         }
     }
-    
-    function appendNotification(message) {
-        const listItem = document.createElement('li');
-        listItem.textContent = message;
-        listItem.classList.add('notification-item');
-        notificationList.appendChild(listItem);
-        newNotificationCount++; // Increment new notification count
-        updateNotificationBubble(); // Update notification bubble
-    }
-    
+
     function sendEmailNotification() {
         // Dummy function to simulate sending an email
-        alert("FIRE!!!!! Email notification sent!");
-        appendNotification('More chances of fire. Email notification sent!');
+        emailNotificationMessage.textContent = 'More chances of fire. Email notification sent!';
     }
-    
+
     // Set initial gauge value
     updateGauge(currentValue);
-    
+
     // Simulate dynamic update
     setInterval(() => {
         currentValue = (currentValue + 1) % 101;
         updateGauge(currentValue);
     }, 1000);
 };
+// script.js
+window.onload = function() {
+    const canvas = document.getElementById('gaugeCanvas');
+    const ctx = canvas.getContext('2d');
+    const gaugeValue = document.getElementById('gaugeValue');
+    const popup = document.getElementById('popup');
+    const closePopup = document.getElementById('closePopup');
+    const warningMessage = document.getElementById('warningMessage');
+    const emailNotificationMessage = document.getElementById('emailNotificationMessage');
+    let currentValue = 50;
+    let emailSent = false;
 
-window.addEventListener('scroll', function() {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    closePopup.addEventListener('click', () => {
+        popup.style.display = 'none';
+    });
 
-  if (scrollTop > lastScrollTop) {
-    // Downscroll
-    navbar.classList.add('hidden');
-  } else {
-    // Upscroll
-    navbar.classList.remove('hidden');
-  }
-  lastScrollTop = scrollTop;
-});
+    function drawGauge(value) {
+        const startAngle = 0.75 * Math.PI;
+        const endAngle = 2.25 * Math.PI;
+        const angle = startAngle + (endAngle - startAngle) * (value / 100);
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height * 0.9;
+        const radius = canvas.width / 2.5;
 
-function updateNotificationBubble() {
-    if (newNotificationCount > 0) {
-        notificationBubble.textContent = newNotificationCount;
-        notificationBubble.style.display = 'block';
-    } else {
-        notificationBubble.style.display = 'none';
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+        ctx.lineWidth = 20;
+        ctx.strokeStyle = '#e0e0e0';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius, startAngle, angle);
+        ctx.lineWidth = 20;
+        ctx.strokeStyle = '#3b82f6';
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, radius - 20, 0, 2 * Math.PI);
+        ctx.fillStyle = '#fff';
+        ctx.fill();
     }
-}
 
+    function updateGauge(value) {
+        gaugeValue.textContent = `${value}%`;
+        drawGauge(value);
 
-notificationIcon.addEventListener('click', function(event) {
-    event.stopPropagation(); // Prevents the click event from bubbling up to the document
-    sidebar.classList.toggle('open');
-    overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
-    // Reset new notification count and update bubble when sidebar is opened
-    newNotificationCount = 0;
-    updateNotificationBubble();
-});
-
-notificationCross.addEventListener('click', function(event) {
-    event.stopPropagation(); // Prevents the click event from bubbling up to the document
-    sidebar.classList.remove('open');
-    overlay.style.display = 'none';
-});
-
-overlay.addEventListener('click', function() {
-    sidebar.classList.remove('open');
-    overlay.style.display = 'none';
-});
-
-document.addEventListener('click', function(event) {
-    const isClickInsideSidebar = sidebar.contains(event.target);
-    const isClickInsideNotificationIcon = notificationIcon.contains(event.target);
-    
-    if (!isClickInsideSidebar && !isClickInsideNotificationIcon) {
-        sidebar.classList.remove('open');
-        overlay.style.display = 'none';
+        if (value > 50 && value <= 70) {
+            popup.style.display = 'block';
+            warningMessage.textContent = 'Fire might be detected';
+            emailNotificationMessage.textContent = '';
+        } else if (value > 70) {
+            if (!emailSent) {
+                sendEmailNotification();
+                emailSent = true;
+            }
+        } else {
+            popup.style.display = 'none';
+            warningMessage.textContent = '';
+            emailNotificationMessage.textContent = '';
+            emailSent = false;
+        }
     }
-});
+
+    function sendEmailNotification() {
+        emailNotificationMessage.textContent = 'More chances of fire. Email notification sent!';
+    }
+
+    updateGauge(currentValue);
+
+    setInterval(() => {
+        currentValue = (currentValue + 1) % 101;
+        updateGauge(currentValue);
+    }, 1000);
+};
