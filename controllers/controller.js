@@ -7,7 +7,7 @@ const JWT_SECRET = '1234567890abcdef1234567890abcdef1234567890abcdef1234567890ab
 
 // Main Controller
 exports.getIndex = (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/index.html'));
+    res.sendFile(path.join(__dirname, '../views/homepage.html'));
 };
 
 // Auth Controller
@@ -56,7 +56,7 @@ exports.login = async (req, res) => {
 
         const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: '1h' });
         console.log('Login successful for user:', username); // Log successful login
-        res.send({ token });
+        res.send({ token, redirectUrl: '/admin' }); // Include the redirect URL
     } catch (err) {
         console.error('Error during login:', err); // Log unexpected errors
         res.status(500).send({ message: 'An unexpected error occurred' });

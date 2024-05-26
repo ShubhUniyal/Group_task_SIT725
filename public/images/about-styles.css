@@ -1,0 +1,202 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 100%;
+    padding-left: 8%;
+    padding-right: 8%;
+    box-sizing: border-box;
+}
+
+header {
+    margin-bottom: 20px;
+}
+
+main {
+    margin-top: 20px;
+}
+
+footer {
+    padding: 20px 0;
+}
+
+.brand-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    margin-left: 0; /* Adjusted to remove left margin */
+}
+
+.brand-logo img {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.brand-name {
+    font-family: 'Baskervville', serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    font-style: italic;
+    color: white;
+    margin-left: 5px; /* Adjusted to minimal left margin */
+}
+
+.menu-icon img {
+    width: 30px;
+    cursor: pointer;
+    margin-left: 40px;
+}
+
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    height: 400px;
+    background-image: linear-gradient(rgba(104, 139, 166, 0.7), rgba(0, 0, 0, 0.7)), url('/images/hero-image.jpg');
+    background-position: center;
+    background-size: cover;
+}
+
+.hero-title {
+    font-size: 3em;
+}
+
+.hero-description {
+    font-size: 1.5em;
+}
+
+.card.hoverable {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card.hoverable:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.card {
+    margin: 10px;
+    text-align: center;
+    background-image: url('/images/darkblue.jpg');
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+}
+
+.card-image {
+    text-align: center;
+    padding: 10px;
+}
+
+.card-image img {
+    width: 50px;
+    height: 50px;
+}
+
+.card-content {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-title {
+    font-size: 1.2em;
+    color: #fff;
+    text-shadow: 0 0 5px #999;
+}
+
+.card p {
+    text-shadow: 0 0 15px #000;
+    font-size: 12px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.range-field {
+    margin: 0;
+}
+
+.range-field input[type=range] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #ddd;
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.range-field input[type=range]:hover {
+    opacity: 1;
+}
+
+.range-field input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #3b5998;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+.range-field input[type=range]::-moz-range-thumb {
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    background: #3b5998;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Specific styling for sections */
+.mission-section {
+    background-color: #f0f0f0;
+    padding: 40px 0;
+}
+
+.team-section {
+    padding: 40px 0;
+}
+
+.feedback-section {
+    padding: 40px 0;
+}
+
+/* AOS Animation for navbar */
+.nav-wrapper.aos-animate {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    transition: opacity 1.2s, transform 1.2s;
+}
+
+.nav-wrapper {
+    opacity: 1;
+    transition: opacity 1.2s, transform 1.2s;
+}

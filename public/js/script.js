@@ -18,7 +18,7 @@ window.onload = function() {
     const emailNotificationMessage = document.getElementById('emailNotificationMessage');
     const showGaugeStatusButton = document.getElementById('showGaugeStatus');
     const gaugeStatus = document.getElementById('gauge-container');
-    let currentValue = 50;
+    let currentValue = 20;
     let emailSent = false; // Flag to track if email has been sent
     let popupShown = false; // Flag to track if popup has been shown
 

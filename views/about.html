@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Protector</title>
+    <link href="https://fonts.googleapis.com/css2?family=Baskervville:ital,wght@1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="/css/about-styles.css">
+</head>
+<body>
+    <header>
+        <nav class="nav-wrapper blue darken-4" id="navbar">
+            <div class="container">
+                <div class="brand-logo-container">
+                    <a href="#" class="brand-logo">
+                        <img src="/images/logo.png" alt="Protector Logo" class="logo">
+                    </a>
+                </div>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section" data-aos="fade-up">
+            <div class="container center-align white-text">
+                <h1 class="hero-title">PROTECTOR</h1>
+                <p class="hero-description">Innovative Fire Detection Solutions</p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section section" data-aos="fade-up">
+            <div class="container">
+                <div class="about-content">
+                    <div class="about-text">
+                        <h2>About Us</h2>
+                        <img src="/images/ff.avif" alt="About Image" class="about-image">
+                        <p>Protector is a leading innovator in the field of fire detection and prevention technologies. Founded with a mission to safeguard lives and property, we leverage the latest advancements in IoT and AI to deliver comprehensive fire safety solutions. Our team of experts is dedicated to developing systems that provide real-time monitoring, early detection, and reliable alerts, ensuring that our clients are always a step ahead in preventing fire-related disasters.</p>
+                        <p>Our state-of-the-art sensor systems are designed to continuously monitor the environment for any signs of fire hazards. By integrating advanced analytics and machine learning algorithms, our solutions can accurately assess potential threats and provide actionable insights. This proactive approach not only enhances safety but also minimizes the risk of false alarms, ensuring that alerts are both timely and accurate.</p>
+                        <p>At Protector, we believe in creating technology that is not only effective but also easy to use. Our user-friendly interfaces and seamless integration with existing systems make it simple for users to manage and monitor fire safety measures from anywhere, at any time. With a commitment to innovation and excellence, Protector is dedicated to providing the highest level of protection for homes, businesses, and communities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mission Section -->
+        <section class="mission-section section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="center-align">Our Mission</h2>
+                <p class="center-align">To provide innovative and reliable fire detection solutions that protect lives and property through advanced technology and real-time data analytics.</p>
+                <p class="center-align">Our mission is rooted in a deep commitment to safety and innovation. We strive to stay at the forefront of technology, continuously enhancing our products and services to meet the evolving needs of our clients. By fostering a culture of continuous improvement and customer focus, we aim to set new standards in fire safety and prevention.</p>
+                <p class="center-align">We are dedicated to building strong, lasting relationships with our clients by delivering exceptional value and unparalleled support. Our team works tirelessly to understand the unique challenges faced by our clients and to develop tailored solutions that address their specific needs. Through collaboration, integrity, and a relentless pursuit of excellence, we are committed to making the world a safer place.</p>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="center-align">Our Team</h2>
+                <div class="row">
+                    <div class="col s12 m6 l3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/images/team1.jpg" alt="Devesh Bhageria">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Devesh Bhageria</span>
+                                <p>Software Engineer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/images/team2.avif" alt="Shubh Uniyal">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Shubh Uniyal</span>
+                                <p>Data Scientist</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/images/team3.avif" alt="Arooma Khan">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Arooma Khan</span>
+                                <p>Hardware Engineer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s12 m6 l3">
+                        <div class="card">
+                            <div class="card-image">
+                                <img src="/images/team4.avif" alt="Kanishk Sachdeva">
+                            </div>
+                            <div class="card-content">
+                                <span class="card-title">Kanishk Sachdeva</span>
+                                <p>Project Manager</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feedback Section -->
+        <section class="feedback-section section" data-aos="fade-up">
+            <div class="container">
+                <h2 class="center-align">Feedback</h2>
+                <div id="feedback-cards" class="row"></div>
+                <div class="center-align">
+                    <button id="show-all-feedbacks" class="btn waves-effect waves-light blue darken-4">Show All Reviews</button>
+                </div>
+                <form action="/feedback" method="POST" class="col s12">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <input id="name" name="name" type="text" class="validate" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="email" name="email" type="email" class="validate" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea id="feedback" name="feedback" class="materialize-textarea" required></textarea>
+                            <label for="feedback">Your Feedback</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <label>Rate Us</label>
+                            <p class="range-field">
+                                <input type="range" id="rating" name="rating" min="1" max="5" step="1">
+                            </p>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn waves-effect waves-light blue darken-4">Submit</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section class="contact-section section" data-aos="fade-up">
+            <div class="container center-align">
+                <h2>Contact Us</h2>
+                <p>Email: protector@example.com</p>
+                <p>Phone: +61 123 456 789</p>
+                <p>Website: <a href="https://www.protector.com" target="_blank">www.protector.com</a></p>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer blue darken-4">
+        <div class="container">
+            <div class="row center-align">
+                <div class="col l12 s12">
+                    <h5 class="white-text">Protector</h5>
+                    <p class="grey-text text-lighten-4">Innovative Fire Detection Solutions</p>
+                </div>
+            </div>
+        </div>
+        <div class="container center-align">
+            © 2024 Protector
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 1200,
+            });
+
+            var elems = document.querySelectorAll('.carousel');
+            var instances = M.Carousel.init(elems, {
+                fullWidth: true,
+                indicators: true
+            });
+
+            // Ensure the navbar fades up when the page is scrolled
+            window.addEventListener('scroll', function() {
+                var navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('aos-animate');
+                } else {
+                    navbar.classList.remove('aos-animate');
+                }
+            });
+
+            // Custom JS for navbar show/hide on scroll
+            let lastScrollPosition = 0;
+            let state = { showNav: true };
+
+            document.addEventListener('scroll', function(e) {
+                if (window.scrollY > lastScrollPosition) {
+                    state.showNav = false;
+                } else {
+                    state.showNav = true;
+                }
+                lastScrollPosition = window.scrollY;
+                updateNavVisibility();
+            }, { passive: true });
+
+            function updateNavVisibility() {
+                const navbar = document.getElementById('navbar');
+                if (state.showNav) {
+                    navbar.style.opacity = 1;
+                    navbar.style.top = '0';
+                } else {
+                    navbar.style.opacity = 0;
+                    navbar.style.top = '-100px';
+                }
+            }
+
+            fetch('/feedbacks')
+                .then(response => response.json())
+                .then(feedbacks => {
+                    const feedbackCards = document.getElementById('feedback-cards');
+                    feedbackCards.innerHTML = ''; // Clear previous feedback cards
+
+                    const showAllButton = document.getElementById('show-all-feedbacks');
+                    let showingAll = false;
+
+                    function renderFeedbacks(feedbacksToShow) {
+                        feedbackCards.innerHTML = ''; // Clear previous feedback cards
+                        feedbacksToShow.forEach(feedback => {
+                            const avatarUrl = `https://api.dicebear.com/8.x/avataaars/svg?seed=${encodeURIComponent(feedback.name)}`;
+                            const card = document.createElement('div');
+                            card.className = 'col s12 m6 l4'; // Adjusted column sizes for better layout
+                            card.innerHTML = `
+                                <div class="card blue-grey darken-1 hoverable">
+                                    <div class="card-image center-align">
+                                        <img src="${avatarUrl}" alt="${feedback.name}" class="circle responsive-img avatar-small">
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <span class="card-title">${feedback.name}</span>
+                                        <p>${feedback.feedback}</p>
+                                        <p>Rating: ${'⭐'.repeat(feedback.rating)}</p>
+                                    </div>
+                                </div>
+                            `;
+                            feedbackCards.appendChild(card);
+                        });
+                    }
+
+                    renderFeedbacks(feedbacks.slice(0, 3)); // Show only the latest 3 feedbacks initially
+
+                    showAllButton.addEventListener('click', function() {
+                        if (showingAll) {
+                            renderFeedbacks(feedbacks.slice(0, 3));
+                            showAllButton.textContent = 'Show All Reviews';
+                        } else {
+                            renderFeedbacks(feedbacks);
+                            showAllButton.textContent = 'Show Less Reviews';
+                        }
+                        showingAll = !showingAll;
+                    });
+                });
+        });
+    </script>
+</body>
+</html>

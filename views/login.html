@@ -48,6 +48,7 @@
                 if (response.ok) { // Handle successful response
                     alert('Login successful');
                     localStorage.setItem('token', data.token); // Store token
+                    window.location.href = data.redirectUrl; // Redirect to admin page
                 } else { // Handle error response
                     alert('Login failed: ' + data.message);
                 }
