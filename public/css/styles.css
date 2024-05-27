@@ -35,8 +35,6 @@ header {
   z-index: 100;
   top: 0;
   background: #0E46A3;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
   transition: top 0.4s;
 }
 
@@ -45,7 +43,8 @@ header {
 }
 
 .logo img {
-  height: 50px;
+  width: 70px;
+  cursor: pointer;
 }
 
 .nav-items {
@@ -338,7 +337,6 @@ body.login-page {
   margin-bottom: 100px;
 }
 
-
 .tip{
   display: flex;
   gap: 50px;
@@ -365,3 +363,18 @@ body.login-page {
   justify-content: space-around;
 }
 
+/* Carousel Animation */
+.animated-carousel {
+  animation: slideFromTop 1s ease-in-out;
+}
+
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

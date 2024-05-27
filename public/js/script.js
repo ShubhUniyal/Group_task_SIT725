@@ -98,7 +98,7 @@ window.onload = async function() {
             popupShown = false; // Reset the popup flag if value goes below 50
         }
     }
-    
+
     function appendNotification(message) {
         const listItem = document.createElement('li');
         listItem.textContent = message;
@@ -107,16 +107,16 @@ window.onload = async function() {
         newNotificationCount++; // Increment new notification count
         updateNotificationBubble(); // Update notification bubble
     }
-    
+
     function sendEmailNotification() {
         // Dummy function to simulate sending an email
         alert("FIRE!!!!! Email notification sent!");
         appendNotification('More chances of fire. Email notification sent!');
     }
-    
+
     // Set initial gauge value
     updateGauge(currentValue);
-    
+
     // Simulate dynamic update
     setInterval(() => {
         currentValue = (currentValue + 1) % 101;
@@ -124,17 +124,17 @@ window.onload = async function() {
     }, 1000);
 };
 
-window.addEventListener('scroll', function() {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+window.addEventListener('scroll', function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-  if (scrollTop > lastScrollTop) {
-    // Downscroll
-    navbar.classList.add('hidden');
-  } else {
-    // Upscroll
-    navbar.classList.remove('hidden');
-  }
-  lastScrollTop = scrollTop;
+    if (scrollTop > lastScrollTop) {
+        // Downscroll
+        navbar.classList.add('hidden');
+    } else {
+        // Upscroll
+        navbar.classList.remove('hidden');
+    }
+    lastScrollTop = scrollTop;
 });
 
 function updateNotificationBubble() {
@@ -147,7 +147,7 @@ function updateNotificationBubble() {
 }
 
 
-notificationIcon.addEventListener('click', function(event) {
+notificationIcon.addEventListener('click', function (event) {
     event.stopPropagation(); // Prevents the click event from bubbling up to the document
     sidebar.classList.toggle('open');
     overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
@@ -156,21 +156,21 @@ notificationIcon.addEventListener('click', function(event) {
     updateNotificationBubble();
 });
 
-notificationCross.addEventListener('click', function(event) {
+notificationCross.addEventListener('click', function (event) {
     event.stopPropagation(); // Prevents the click event from bubbling up to the document
     sidebar.classList.remove('open');
     overlay.style.display = 'none';
 });
 
-overlay.addEventListener('click', function() {
+overlay.addEventListener('click', function () {
     sidebar.classList.remove('open');
     overlay.style.display = 'none';
 });
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const isClickInsideSidebar = sidebar.contains(event.target);
     const isClickInsideNotificationIcon = notificationIcon.contains(event.target);
-    
+
     if (!isClickInsideSidebar && !isClickInsideNotificationIcon) {
         sidebar.classList.remove('open');
         overlay.style.display = 'none';
