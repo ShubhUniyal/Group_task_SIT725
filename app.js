@@ -2,13 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const http = require('http');
-const WebSocket = require('ws');
+const { Server } = require('socket.io');
 const connectToMongoDB = require('./config/db');
 const routes = require('./routes');
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const io = new Server(server);
 
 // Middleware
 app.use(bodyParser.json());
@@ -51,21 +51,16 @@ connectToMongoDB().then((db) => {
     console.error('Failed to connect to MongoDB:', err);
 });
 
-wss.on('connection', (ws) => {
-    console.log('WebSocket connection established');
+// Socket.io connection
+io.on('connection', (socket) => {
+    console.log('A user connected', socket.id);
 
-    ws.on('message', (message) => {
-        console.log('Received:', message);
-        wss.clients.forEach(client => {
-            if (client.readyState === WebSocket.OPEN) {
-                client.send(message);
-            }
-        });
+    // Log when the user disconnects
+    socket.on('disconnect', () => {
+        console.log('A user disconnected', socket.id);
     });
 
-    ws.on('close', () => {
-        console.log('WebSocket connection closed');
-    });
+    // Additional socket events can be handled here
 });
 
 module.exports = app;
