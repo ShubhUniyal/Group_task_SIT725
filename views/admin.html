@@ -17,7 +17,7 @@
             <ul class="nav-items">
                 <li class="nav-item"><a href="/">Home</a></li>
                 <li class="nav-item"><a href="/about">About</a></li>
-                <li class="nav-item"><a href="/index">Dashboard</a></li>
+                <li class="nav-item"><a href="/dashboard">Dashboard</a></li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                        Helpline
@@ -37,7 +37,7 @@
                 <img src="/images/banner1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block">
                     <h5>Welcome to the Dashboard</h5>
-                    <p>Find all the information related to guage here</p>
+                    <p>Find all the information related to gauge here</p>
                 </div>
             </div>
             <div class="carousel-item">
@@ -66,9 +66,28 @@
     </div>
     <main class="body-content">
         <div class="crud-operations">
-            <button class="btn btn-lg btn-primary">Update senstivity</button>
-            <button class="btn btn-lg btn-primary">Other Action</button>
+            <button class="btn btn-lg btn-primary" onclick="showThresholdForm()">Update Threshold Value</button>
         </div>
+        <div id="current-threshold" class="alert alert-info" role="alert">
+            Current Threshold Value: <span id="current-threshold-value">Loading...</span>
+        </div>
+        <form id="threshold-form" style="display:none;" onsubmit="updateThreshold(event)">
+            <div class="form-group">
+                <label for="thresholdValue">Threshold Value:</label>
+                <input type="number" class="form-control" id="thresholdValue" name="thresholdValue" min="0" max="100" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <div class="crud-operations">
+            <button class="btn btn-lg btn-danger" onclick="showDeleteFeedbackForm()">Delete Feedback by Name</button>
+        </div>
+        <form id="delete-feedback-form" style="display:none;" onsubmit="deleteFeedback(event)">
+            <div class="form-group">
+                <label for="feedbackName">Feedback Name:</label>
+                <input type="text" class="form-control" id="feedbackName" name="feedbackName" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
     </main>
     
     <section class="middle-content">
@@ -88,13 +107,12 @@
                 </p>
             </div>
         </div>
-
     </section>
     <section class="middle-content2">
         <div class="tip">
             <div class="tip-content">
                 <h3>Do Not Re-enter</h3>
-                <p>Under no circumstances should you re-enter a burning building.Once safely outside, call the fire department or emergency services to report the fire. Provide clear and accurate information about the location and extent of the fire. Wait for firefighters to arrive and handle the situation.
+                <p>Under no circumstances should you re-enter a burning building. Once safely outside, call the fire department or emergency services to report the fire. Provide clear and accurate information about the location and extent of the fire. Wait for firefighters to arrive and handle the situation.
                 </p>
             </div>
             <img src="/images/fire-brigade.jpg" alt="fire-brigade">
@@ -111,10 +129,80 @@
     <footer>
         <p>&copy; 2024 Fire Detection</p>
     </footer>
-   
 
     <script src="js/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const currentThresholdValueSpan = document.getElementById('current-threshold-value');
+            try {
+                const response = await fetch('/api/threshold');
+                const data = await response.json();
+                if (response.ok) {
+                    currentThresholdValueSpan.textContent = data.value;
+                } else {
+                    currentThresholdValueSpan.textContent = 'Failed to load';
+                }
+            } catch (error) {
+                currentThresholdValueSpan.textContent = 'Error';
+            }
+        });
+
+        function showThresholdForm() {
+            const form = document.getElementById('threshold-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        async function updateThreshold(event) {
+            event.preventDefault();
+            const thresholdValue = document.getElementById('thresholdValue').value;
+
+            try {
+                const response = await fetch('/api/threshold', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ thresholdValue })
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Threshold value updated successfully');
+                    document.getElementById('current-threshold-value').textContent = thresholdValue;
+                } else {
+                    alert('Failed to update threshold: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to update threshold: An unexpected error occurred.');
+            }
+        }
+
+        function showDeleteFeedbackForm() {
+            const form = document.getElementById('delete-feedback-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        async function deleteFeedback(event) {
+            event.preventDefault();
+            const feedbackName = document.getElementById('feedbackName').value;
+
+            try {
+                const response = await fetch(`/api/feedback/${feedbackName}`, {
+                    method: 'DELETE'
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Feedback deleted successfully');
+                } else {
+                    alert('Failed to delete feedback: ' + data.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to delete feedback: An unexpected error occurred.');
+            }
+        }
+    </script>
 </body>
 </html>
