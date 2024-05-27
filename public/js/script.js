@@ -8,7 +8,7 @@ const navbar = document.querySelector('.nav-bar');
 const notificationBubble = document.querySelector('.notification-bubble');
 let newNotificationCount = 0;
 
-window.onload = async function() {
+window.onload = async function () {
     const canvas = document.getElementById('gaugeCanvas');
     const ctx = canvas.getContext('2d');
     const gaugeValue = document.getElementById('gaugeValue');
@@ -77,7 +77,7 @@ window.onload = async function() {
     function updateGauge(value) {
         gaugeValue.textContent = `${value}%`;
         drawGauge(value);
-    
+
         if (value > 50 && value <= thresholdValue) {
             if (!popupShown) {
                 popup.style.display = 'block';
