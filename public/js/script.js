@@ -8,7 +8,7 @@ const navbar = document.querySelector('.nav-bar');
 const notificationBubble = document.querySelector('.notification-bubble');
 let newNotificationCount = 0;
 
-window.onload = function() {
+window.onload = async function () {
     const canvas = document.getElementById('gaugeCanvas');
     const ctx = canvas.getContext('2d');
     const gaugeValue = document.getElementById('gaugeValue');
@@ -18,9 +18,22 @@ window.onload = function() {
     const emailNotificationMessage = document.getElementById('emailNotificationMessage');
     const showGaugeStatusButton = document.getElementById('showGaugeStatus');
     const gaugeStatus = document.getElementById('gauge-container');
-    let currentValue = 50;
+    let currentValue = 20;
     let emailSent = false; // Flag to track if email has been sent
     let popupShown = false; // Flag to track if popup has been shown
+    let thresholdValue = 70; // Default value
+
+    try {
+        const response = await fetch('/api/threshold');
+        const data = await response.json();
+        if (response.ok) {
+            thresholdValue = data.value;
+        } else {
+            console.error('Failed to fetch threshold:', data.message);
+        }
+    } catch (error) {
+        console.error('Error fetching threshold:', error);
+    }
 
     closePopup.addEventListener('click', () => {
         popup.style.display = 'none';
@@ -64,15 +77,15 @@ window.onload = function() {
     function updateGauge(value) {
         gaugeValue.textContent = `${value}%`;
         drawGauge(value);
-    
-        if (value > 50 && value <= 70) {
+
+        if (value > 50 && value <= thresholdValue) {
             if (!popupShown) {
                 popup.style.display = 'block';
                 appendNotification('Fire might be detected');
                 emailNotificationMessage.textContent = ''; // Clear any previous email notification message
                 popupShown = true; // Set the flag to true to prevent further popups
             }
-        } else if (value > 70) {
+        } else if (value > thresholdValue) {
             if (!emailSent) {
                 sendEmailNotification();
                 emailSent = true; // Set the flag to true to prevent further emails
@@ -81,11 +94,11 @@ window.onload = function() {
             popup.style.display = 'none';
             notificationList.innerHTML = ''; // Clear all notification messages
             emailNotificationMessage.textContent = ''; // Clear any previous email notification message
-            emailSent = false; // Reset the flag if value goes below 70
+            emailSent = false; // Reset the flag if value goes below threshold
             popupShown = false; // Reset the popup flag if value goes below 50
         }
     }
-    
+
     function appendNotification(message) {
         const listItem = document.createElement('li');
         listItem.textContent = message;
@@ -94,16 +107,16 @@ window.onload = function() {
         newNotificationCount++; // Increment new notification count
         updateNotificationBubble(); // Update notification bubble
     }
-    
+
     function sendEmailNotification() {
         // Dummy function to simulate sending an email
         alert("FIRE!!!!! Email notification sent!");
         appendNotification('More chances of fire. Email notification sent!');
     }
-    
+
     // Set initial gauge value
     updateGauge(currentValue);
-    
+
     // Simulate dynamic update
     setInterval(() => {
         currentValue = (currentValue + 1) % 101;
@@ -111,17 +124,17 @@ window.onload = function() {
     }, 1000);
 };
 
-window.addEventListener('scroll', function() {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+window.addEventListener('scroll', function () {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-  if (scrollTop > lastScrollTop) {
-    // Downscroll
-    navbar.classList.add('hidden');
-  } else {
-    // Upscroll
-    navbar.classList.remove('hidden');
-  }
-  lastScrollTop = scrollTop;
+    if (scrollTop > lastScrollTop) {
+        // Downscroll
+        navbar.classList.add('hidden');
+    } else {
+        // Upscroll
+        navbar.classList.remove('hidden');
+    }
+    lastScrollTop = scrollTop;
 });
 
 function updateNotificationBubble() {
@@ -134,7 +147,7 @@ function updateNotificationBubble() {
 }
 
 
-notificationIcon.addEventListener('click', function(event) {
+notificationIcon.addEventListener('click', function (event) {
     event.stopPropagation(); // Prevents the click event from bubbling up to the document
     sidebar.classList.toggle('open');
     overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
@@ -143,21 +156,21 @@ notificationIcon.addEventListener('click', function(event) {
     updateNotificationBubble();
 });
 
-notificationCross.addEventListener('click', function(event) {
+notificationCross.addEventListener('click', function (event) {
     event.stopPropagation(); // Prevents the click event from bubbling up to the document
     sidebar.classList.remove('open');
     overlay.style.display = 'none';
 });
 
-overlay.addEventListener('click', function() {
+overlay.addEventListener('click', function () {
     sidebar.classList.remove('open');
     overlay.style.display = 'none';
 });
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', function (event) {
     const isClickInsideSidebar = sidebar.contains(event.target);
     const isClickInsideNotificationIcon = notificationIcon.contains(event.target);
-    
+
     if (!isClickInsideSidebar && !isClickInsideNotificationIcon) {
         sidebar.classList.remove('open');
         overlay.style.display = 'none';

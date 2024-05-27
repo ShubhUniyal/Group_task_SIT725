@@ -20,7 +20,7 @@ body {
 
 /* Header Styles */
 header {
-  background: #0E46A3;
+  background: #3f6096;
   color: white;
   display: flex;
   align-items: center;
@@ -34,9 +34,7 @@ header {
   position: fixed;
   z-index: 100;
   top: 0;
-  background: #0E46A3;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  background: #3f6096;
   transition: top 0.4s;
 }
 
@@ -45,7 +43,8 @@ header {
 }
 
 .logo img {
-  height: 50px;
+  width: 70px;
+  cursor: pointer;
 }
 
 .nav-items {
@@ -117,7 +116,7 @@ main {
 
 /* Footer Styles */
 footer {
-  background: #0E46A3;
+  background: #3f6096;
   color: white;
   text-align: center;
   padding: 0.5em;
@@ -155,7 +154,7 @@ footer p {
 
 .popup-content button {
   padding: 0.5em 1em;
-  background: #0E46A3;
+  background: #3f6096;
   color: white;
   border: none;
   border-radius: 5px;
@@ -168,7 +167,7 @@ body.login-page {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('bluey\(1\).jpg') no-repeat center center;
+  background-image:linear-gradient(rgba(104, 139, 166, 0.7), rgba(0, 0, 0, 0.7)), url('images/bluey(1).jpg');
   background-size: cover;
 }
 
@@ -303,7 +302,7 @@ body.login-page {
   padding: 0.8em;
   display: flex;
   justify-content: space-between;
-  background: #0E46A3;
+  background: #3f6096;
   color: white;
 }
 
@@ -328,7 +327,7 @@ body.login-page {
 .middle-content{
   margin-top: 100px;
   padding: 30px 150px;
-  background-color:  #0E46A3;
+  background-color:  #3f6096;
   color: white;
 }
 
@@ -337,7 +336,6 @@ body.login-page {
   color: black;
   margin-bottom: 100px;
 }
-
 
 .tip{
   display: flex;
@@ -365,3 +363,27 @@ body.login-page {
   justify-content: space-around;
 }
 
+/* Carousel Animation */
+.animated-carousel {
+  animation: slideFromTop 1s ease-in-out;
+}
+
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.gauge-btn{
+  background-color: #3f6096 !important;
+}
+
+.gauge-btn:hover {
+  background-color: #2f4b7e !important;
+  transition: background-color 0.3s;
+}

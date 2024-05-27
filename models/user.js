@@ -18,6 +18,18 @@ class User {
     async findUserByUsername(username) {
         return await this.collection.findOne({ username });
     }
+    async updateUserPassword(username, hashedPassword) {
+        try {
+            const result = await this.collection.updateOne(
+                { username },
+                { $set: { password: hashedPassword } }
+            );
+            return result;
+        } catch (err) {
+            console.error('Error updating user password:', err);
+            throw err;
+        }
+    }
 }
 
 module.exports = User;
